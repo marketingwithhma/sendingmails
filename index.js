@@ -2,12 +2,12 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 require("dotenv").config(); // Load environment variables from .env
-const cors  = require("cors")
+const cors = require("cors")
 // Create an Express app
 const app = express();
 app.use(express.json()); // Parse JSON bodies
 let corsOptions = {
-  origin : ['http://127.0.0.1:8000'],
+  origin: ['http://127.0.0.1:8000'],
 }
 
 app.use(cors(corsOptions))
@@ -58,6 +58,10 @@ app.post("/send-email", async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to send email." });
   }
 });
+
+app.get("/", (req, res) => {
+  res.send("sending email working fine")
+})
 
 // Start the server
 const PORT = process.env.PORT || 5000;
